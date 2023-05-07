@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
-import 'package:my_quiz_app/quiz_app_button.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen({
+  final void Function() startQuiz;
+
+  const StartScreen(
+    this.startQuiz, {
     super.key,
   });
 
@@ -17,7 +18,7 @@ class StartScreen extends StatelessWidget {
           Image.asset(
             'assets/images/quiz-logo.png',
             width: 280,
-            color: Color.fromARGB(93, 255, 255, 255),
+            color: const Color.fromARGB(93, 255, 255, 255),
           ),
           const SizedBox(
             height: 80,
@@ -29,8 +30,27 @@ class StartScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const QuizAppButton(
-            buttonText: 'Start Quiz',
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.only(
+                left: 12,
+                right: 12,
+              ),
+            ),
+            onPressed: () {
+              startQuiz();
+            },
+            icon: const Icon(
+              Icons.arrow_forward_outlined,
+              color: Colors.white70,
+            ),
+            label: const Text(
+              'Start Quiz',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white60,
+              ),
+            ),
           ),
         ],
       ),
