@@ -13,18 +13,14 @@ class _QuizState extends State<Quiz> {
   // render content conditionally
   // lifting state
   // passing functions as values
-  // initState
-  Widget? activeScreen;
+  // initState method
+  // using Ternary Expression & Comparison
+  var activeScreen = 'start-screen';
 
-  @override
-  void initState() {
-    activeScreen = StartScreen(switchScreen);
-    super.initState();
-  }
-
+  // method >> to switch to another screen
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionsScreen();
+      activeScreen = 'questions-screen';
     });
   }
 
@@ -43,7 +39,9 @@ class _QuizState extends State<Quiz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: activeScreen,
+          child: activeScreen == 'start-screen'
+              ? StartScreen(switchScreen)
+              : const QuestionsScreen(),
         ),
       ),
     );
